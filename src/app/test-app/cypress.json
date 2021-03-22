@@ -1,1 +1,9 @@
-{}
+{
+    "env":
+    {
+        "auth_username": "larsj",
+        "auth_password": "pass123"
+    },
+    "viewportWidth": 1200,
+    "viewportHeight": 800
+}
