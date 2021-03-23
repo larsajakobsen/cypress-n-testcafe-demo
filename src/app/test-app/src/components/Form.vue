@@ -41,21 +41,26 @@
       </div>
     </form>
     <div v-if="complete" class="complete">
-      <h1>Complete!</h1>
+      <h1>{{ joke }}</h1>
     </div>
   </div>
 </template>
 
 <script>
+import axios from 'axios';
 export default {
   name: 'Form',
   data() {
     return {
       complete: false,
+      joke: '',
     };
   },
   methods: {
     submit() {
+      axios
+        .get('https://api.chucknorris.io/jokes/random')
+        .then((response) => (this.joke = response.data.value));
       this.complete = true;
     },
   },

@@ -55,7 +55,16 @@ describe('Login', () => {
 
     cy.get('#btn-submit').click();
 
+    cy.intercept('GET', 'https://api.chucknorris.io/jokes/random', {
+      value: 'Kjedelig vits...',
+    });
+
     cy.get('.complete').should('be.visible');
+
+    cy.get('.complete')
+      .children('h1')
+      .first()
+      .should('contain', 'Kjedelig vits...');
 
     cy.wait(1000);
   });
