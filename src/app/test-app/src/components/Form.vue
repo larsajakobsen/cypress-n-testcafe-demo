@@ -29,24 +29,35 @@
       <br />
       <br />
       <div class="gender">
-        <label>
-          Gender : </label
-        ><br />
+        <label> Gender : </label><br />
         <input type="radio" name="male" /> Male <br />
         <input type="radio" name="female" /> Female <br />
         <input type="radio" name="other" /> Other
       </div>
       <br />
       <br />
+      <div class="buttons">
+        <input id="btn-submit" type="button" value="Submit" @click="submit()" />
+      </div>
     </form>
+    <div v-if="complete" class="complete">
+      <h1>Complete!</h1>
+    </div>
   </div>
 </template>
 
 <script>
 export default {
   name: 'Form',
-  props: {
-    msg: String,
+  data() {
+    return {
+      complete: false,
+    };
+  },
+  methods: {
+    submit() {
+      this.complete = true;
+    },
   },
 };
 </script>

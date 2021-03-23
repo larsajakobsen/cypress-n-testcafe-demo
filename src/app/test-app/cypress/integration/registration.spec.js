@@ -13,6 +13,8 @@ describe('Login', () => {
       delay: 25,
     });
 
+    cy.wait(1000);
+
     cy.get('.buttons input')
       .first()
       .click();
@@ -20,5 +22,41 @@ describe('Login', () => {
     cy.location().should((loc) => {
       expect(loc.pathname).to.eq('/registration');
     });
+  });
+
+  it('Registration should show alert', () => {
+    cy.wait(1000);
+
+    cy.get('.person')
+      .children('input')
+      .eq('0')
+      .type('Lars', {
+        force: true,
+        delay: 25,
+      });
+
+    cy.get('.person')
+      .children('input')
+      .eq('1')
+      .type('Alexander', {
+        force: true,
+        delay: 25,
+      });
+
+    cy.get('.person')
+      .children('input')
+      .eq('2')
+      .type('Jakobsen', {
+        force: true,
+        delay: 25,
+      });
+
+    cy.wait(1000);
+
+    cy.get('#btn-submit').click();
+
+    cy.get('.complete').should('be.visible');
+
+    cy.wait(1000);
   });
 });

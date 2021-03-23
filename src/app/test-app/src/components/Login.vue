@@ -1,34 +1,32 @@
 <template>
   <div class="form-container">
     <form>
-
       Email:
-      <input type="email" id="email" name="email"/> <br>
+      <input type="email" id="email" name="email" /> <br />
       Password:
-      <input type="Password" id="pass" name="pass"> <br>
+      <input type="Password" id="pass" name="pass" /> <br />
 
       <div class="buttons">
         <input type="button" value="Submit" @click="submit()" />
       </div>
-
     </form>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'Form',
-  data(){
+  name: 'Login',
+  data() {
     return {
-      foobar : null
-    }
+      foobar: null,
+    };
   },
   methods: {
-    submit(){
-      this.$router.push("/registration");
-    }
-  }
-}
+    submit() {
+      this.$router.push('/registration');
+    },
+  },
+};
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
