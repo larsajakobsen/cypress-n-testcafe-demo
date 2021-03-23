@@ -25,6 +25,10 @@ describe('Login', () => {
   });
 
   it('Registration should show alert', () => {
+    cy.intercept('GET', 'https://api.chucknorris.io/jokes/random', {
+      value: 'Kjedelig vits...',
+    });
+
     cy.wait(1000);
 
     cy.get('.person')
@@ -54,10 +58,6 @@ describe('Login', () => {
     cy.wait(1000);
 
     cy.get('#btn-submit').click();
-
-    cy.intercept('GET', 'https://api.chucknorris.io/jokes/random', {
-      value: 'Kjedelig vits...',
-    });
 
     cy.get('.complete').should('be.visible');
 
