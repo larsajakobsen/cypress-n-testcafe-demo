@@ -1,4 +1,4 @@
-import { Selector, ClientFunction } from 'testcafe';
+import { Selector, ClientFunction, RequestMock } from 'testcafe';
 
 fixture`Login`.page`http://localhost:8080`;
 
@@ -16,7 +16,17 @@ test('Should end up at registration', async (t) => {
     .contains('registration');
 });
 
-test.page`http://localhost:8080/registration`(
+const chuckMock = RequestMock()
+  .onRequestTo('https://api.chucknorris.io/jokes/random')
+  .respond(
+    {
+      value: 'Kjedelig vits...',
+    },
+    200,
+    { 'Access-Control-Allow-Origin': '*' },
+  );
+
+test.page`http://localhost:8080/registration`.requestHooks(chuckMock)(
   'Registration should show alert',
   async (t) => {
     const firstNameInput = Selector('#firstname');
@@ -38,6 +48,9 @@ test.page`http://localhost:8080/registration`(
       .click(submitButton)
       .wait(1000)
       .expect(completeText.visible)
-      .ok();
+      .ok()
+      .expect(completeText.innerText)
+      .contains('Kjedelig vits')
+      .wait(1000);
   },
 );
