@@ -3,7 +3,7 @@
     <form>
       <div class="person">
         <label> Firstname </label>
-        <input type="text" name="firstname" size="15" /> <br />
+        <input type="text" id="firstname" name="firstname" size="15" /> <br />
         <br />
         <label> Middlename: </label>
         <input type="text" name="middlename" size="15" /> <br />
