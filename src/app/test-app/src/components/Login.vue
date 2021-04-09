@@ -1,27 +1,32 @@
 <template>
   <div class="form-container">
-<form>
+    <form>
+      Email:
+      <input type="email" id="email" name="email" /> <br />
+      Password:
+      <input type="Password" id="pass" name="pass" /> <br />
 
-Email:
-<input type="email" id="email" name="email"/> <br>
-<br> <br>
-Password:
-<input type="Password" id="pass" name="pass"> <br>
-<br> <br>
-Re-type password:
-<input type="Password" id="repass" name="repass"> <br> <br>
-<input type="button" value="Submit"/>
-</form>
+      <div class="buttons">
+        <input type="button" value="Submit" @click="submit()" />
+      </div>
+    </form>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'Form',
-  props: {
-    msg: String
-  }
-}
+  name: 'Login',
+  data() {
+    return {
+      foobar: null,
+    };
+  },
+  methods: {
+    submit() {
+      this.$router.push('/registration');
+    },
+  },
+};
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
